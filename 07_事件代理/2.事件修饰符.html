@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的基本使用</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+<style>
+    *{
+        margin: 20px;
+    }
+
+    .demo{
+        height: auto;
+        background-color: blue; 
+    }
+
+    .demo1{
+        height: 50px;
+        background-color: aqua;
+    }
+
+    .demo2{
+        height: 50px;
+        background-color: bisque;
+    }
+
+    #root{
+        background-color: aliceblue;
+    }
+
+    .list{
+        height: 400px;
+        background-color: goldenrod;
+        overflow: auto;
+    }
+
+    li{
+        height: 200px;
+        background-color: bisque;
+    }
+</style>
+</head>
+<body>
+    <div id = "root">
+
+        <div class = "demo">
+        <!--阻止默认事件-->
+            <button @click = "showInfo">阻止默认事件</button><br>
+            <a href = 'http://www.baidu.com' @click.prevent = "showInfo2">点击跳转百度</a>
+        </div>
+
+        <!-- 阻止事件冒泡 -->
+        <div class = "demo1" @click = "showInfo3">
+            <button @click.stop = "showInfo4">阻止事件冒泡</button><br>
+        </div>
+
+        <!-- 事件只触发一次 -->
+        <div class = "demo2">
+            <button @click.once = "showInfo">事件只触发一次</button><br>
+        </div>
+
+        <!-- 使用事件的捕获方式 -->
+        <div class = "box1" @click.capture = "showMsg(1)">
+            使用事件的捕获方式
+            <div class = "box2" @click = "showMsg(2)">
+                使用事件的捕获方式
+            </div>
+        </div>
+
+        <!-- 只有event.target是当前操作的元素时才触发事件 -->
+        <div class = "demo1" @click.self = "showInfo">
+            <button @click = "showInfo">只有event.target是当前操作的元素时才触发事件</button><br>
+        </div>
+
+        <ul class = "list" @scroll.passive = "demo" >
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        
+        new Vue({
+            el:'#root',
+            methods:{
+                showInfo(){
+                    alert('点击事件触发');
+                },
+
+                showInfo2(){
+                    alert('跳转百度');
+                },
+
+                showInfo3(){
+                    alert('外层div');
+                },
+
+                showInfo4(){
+                    alert('内层div');
+                },
+
+                showMsg(number){
+                    console.log(number);
+                },
+
+                demo(){
+                    for(let i = 1; i < 10000; i++){
+                        console.log('#');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

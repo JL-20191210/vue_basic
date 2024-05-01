@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据检测原理</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+</head>
+<body>
+    <div id = "root">
+
+        <!-- 遍历数组 -->
+        <h2>人员列表（遍历数组）</h2>
+        <ul>
+            <li>{{name}}</li>
+            <li>{{address}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+        //用计算属性实现
+        const vm = new Vue({
+            el:'#root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                keyWord:"",
+                name:'尚硅谷',
+                address:'北京'
+
+            },
+        })
+    </script>
+</body>
+</html>

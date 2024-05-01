@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+</head>
+<body>
+    <!--使用v-show做条件渲染-->
+    <!-- <div class = "root" v-show = "true">
+        <h1>v-show使用布尔值进行显示或隐藏</h1>
+    </div> -->
+
+    <!-- <div class = "root" v-show = "a">
+        <h1>v-show使用对象进行显示或隐藏</h1>
+    </div> -->
+
+    <!-- s使用v-if做条件渲染 -->
+    <!-- <div class = "root">
+        <h1>v-当前值为：{{n}}</h1>
+        <button @click = "n++">点我加一</button>
+        <h2 v-if = "n===1">n为1时显示</h2>
+        <h2 v-if = "n===2">n为2时显示</h2>
+        <h2 v-if = "n===3">n为3时显示</h2>
+        <h2 v-if = "n===4">n为4时显示</h2>
+    </div> -->
+
+    <!-- 使用v-else-if和v-else做条件渲染 -->
+    <div class = "root">
+        <h1>当前值为：{{n}}</h1>
+        <button @click = "n++">点我加一</button>
+        <h2 v-if = "n===1">n为1时显示</h2>
+        <h2 v-else-if = "n===2">n为2时显示</h2>
+        <h2 v-else-if = "n===3">n为3时显示</h2>
+        <h2 v-else-if = "n===4">n为4时显示</h2>
+        <h2 v-else>n为其他时显示</h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+        //创建vue实例
+        const vm = new Vue({
+            el:'.root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                a:false, //注意写法
+                n:1,
+            },
+        })
+    </script>
+</body>
+</html>

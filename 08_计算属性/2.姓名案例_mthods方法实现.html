@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+  <style>
+    *{
+        margin: 20px;
+    }
+  </style>
+</head>
+<body>
+    <!--准备好一个容器-->
+    <div class = "root">
+        姓<input type = "text" v-model = "fistName"><br>
+        名<input type = "text" v-model = "lastName"><br>
+        <span>{{fullName()}}</span>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+        //创建vue实例
+        new Vue({
+            el:'.root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                fistName:'张',
+                lastName:'三',
+            },
+            
+            methods:{
+                fullName(){
+                    return this.fistName + '-' + this.lastName; 
+                }
+            },
+
+            
+        })
+    </script>
+</body>
+</html>

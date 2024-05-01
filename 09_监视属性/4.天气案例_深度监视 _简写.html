@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+  <style>
+    *{
+        margin: 20px;
+    }
+  </style>
+</head>
+<body>
+    <!--准备好一个容器-->
+    <div class = "root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click = "changeWeather">切换天气</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+        //创建vue实例
+        const vm = new Vue({
+            el:'.root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                isHot:true,
+            },
+
+            computed:{ 
+                info(){
+                    return this.isHot ? '炎热':'凉爽';
+                }
+            },
+
+            methods:{
+                changeWeather(){
+                    this.isHot = !this.isHot;
+                }
+            },
+            //在实例中定义
+             watch:{
+                //定义时决定要监视哪个属性
+                //正常写法
+/*                 isHot:{
+                    handler(newValue,oldValue){
+                        console.log('isHot被修改了',newValue,oldValue);
+                    }
+                } */
+
+                //简写
+/*                 isHot(newValue,oldValue){
+                    console.log('isHot被修改了',newValue,oldValue);
+                } */
+            }
+         })
+
+        //定义完了之后再给哪些属性加监视
+        //正常写法
+        //注意这个地方的info是带引号的，在vm中定义时省略掉了引号，在外面用要加回来
+/*         vm.$watch('info',{
+            immadiately:true,//初始化时让handler调用一下
+            deep:true,//深度监视
+            handler(newValue,oldValue){
+                        console.log('info被修改了',newValue,oldValue);
+                    }
+        }) */
+
+        //简写 正常函数
+        vm.$watch('isHot',function(newValue,oldValue){
+            console.log('@实例外正常函数：info被修改了',newValue,oldValue,this);
+        })
+
+/*         vm.$watch('isHot',(newValue,oldValue)=>{
+            console.log('@实例外箭头函数：info被修改了',newValue,oldValue,this);
+        }) */
+
+
+        
+    </script>
+</body>
+</html>

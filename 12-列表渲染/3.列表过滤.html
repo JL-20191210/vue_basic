@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+</head>
+<body>
+    <div id = "root">
+
+        <!-- 遍历数组 -->
+        <h2>人员列表（遍历数组）</h2>
+        <div v-show = "true" >
+            搜索<input type = "text" placeholder = "请输入名字" v-model = "keyWord">
+        </div>
+        <ul>
+            <li v-for = "(p,index) in filepersons" :key = "index">{{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+/*         //创建vue实例
+        //用watch实现
+        const vm = new Vue({
+            el:'#root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                keyWord:"",
+                persons:[
+                    {id:"001",name:"张三",age:"18",sex:"男"},
+                    {id:"002",name:"李四",age:"19",sex:"女"},
+                    {id:"003",name:"王五",age:"20",sex:"男"},
+                ],
+                filePersons:[]
+            },
+            //注意watch与data平级
+            watch:{
+                // keyWord(val){
+                //     this.persons = this.persons.filter((p)=>{
+                //         return p.name.indexOf(val) !== -1;
+                //     })
+                // }
+                keyWord:{
+                    //先执行一次handler
+                    immediate:true,
+                    handler(val){
+                        this.filePersons = this.persons.filter((p=>{
+                            return p.name.indexOf(val) !== -1;
+                        }))
+                    }
+                }
+            }
+        }) */
+
+        //用计算属性实现
+        const vm = new Vue({
+            el:'#root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                keyWord:"",
+                persons:[
+                    {id:"001",name:"张三",age:"18",sex:"男"},
+                    {id:"002",name:"李四",age:"19",sex:"女"},
+                    {id:"003",name:"王五",age:"20",sex:"男"},
+                ],
+            },
+            computed:{
+                filepersons(){
+                return this.persons.filter((p)=>{
+                    return p.name.indexOf(this.keyWord) !== -1;
+                })
+            }
+            }
+        })
+    </script>
+</body>
+</html>

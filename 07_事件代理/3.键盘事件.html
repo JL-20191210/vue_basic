@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识vue</title>
+  <script  type = "text/javascript" src = "../js/vue.js"></script>
+</head>
+<body>
+    <!--准备好一个容器-->
+    <div class = "root">
+        按键触发事件<input type = "text" @keydown.huiche = "showMsg">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+
+        //创建vue实例
+        new Vue({
+            el:'.root' ,//el用于指定当前vue实例为哪个容器服务，值通常为css选择字符串
+            data:{
+                name:'尚硅谷',//data用于存储数据，数据供el所指定的容器去使用，值我们暂时写为一个对象
+                address:'北京昌平'
+            },
+            
+            methods:{
+                showMsg(e){
+                    console.log(e.target.value);
+                    // console.log(e.keyCode,e.key);
+                }
+            },
+
+            
+        })
+
+        Vue.config.keyCodes.huiche = 13;
+    </script>
+</body>
+</html>
