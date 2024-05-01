@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>自定义指令</title>
+		<!-- 引入Vue -->
+		<style>
+			.demo{
+				background-color: orange;
+			}
+		</style>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<button id="btn">点我出框</button>
+	</body>
+
+	<script type="text/javascript">
+		const btn = document.getElementById('btn');
+		btn.onclick=()=>{
+			const input = document.createElement('input');
+			input.className = 'demo';
+			
+			document.body.appendChild(input);
+			//只有当元素插入页面才知道父节点是谁
+			input.parentElement.style.backgroundColor = 'skyblue';
+			input.focus();
+			input.onclick = ()=>{alert(1)}
+		}
+	</script>
+</html>
