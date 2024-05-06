@@ -1,6 +1,5 @@
 <template>
-    <div class="demo">
-        <h1 class="title">你好啊</h1>
+    <div>
         <School></School>
         <hr>
         <Student></Student>
@@ -17,9 +16,3 @@
         components:{Student,School},
     }
 </script>
-
-<style scoped>
-    .title{
-        color: red;
-    }
-</style>
